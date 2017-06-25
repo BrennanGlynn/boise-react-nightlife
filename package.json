@@ -1,0 +1,16 @@
+{
+  "name": "boise-react-nightlife",
+  "version": "1.0.0",
+  "description": "fullstack react app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --env.dev",
+    "build": "webpack"
+  },
+  "author": "brennanglynn@u.boisestate.edu",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  }
+}
