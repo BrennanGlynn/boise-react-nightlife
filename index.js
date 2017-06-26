@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
+import styled from 'styled-components'
 
-const styles = {
-  app: {
-    paddingTop: 40,
-    textAlign: 'center',
-  }
-}
+const randomColor = () => '#' + Math.random().toString(16).substr(-6)
+
+const Lard = styled.div`
+  padding: 20px;
+  text-align: center;
+  color: white;
+  background-color: ${props => props.color};
+`
+
+const Container = styled.div`
+  padding: 20px;
+`
 
 class Card extends Component {
   render () {
@@ -26,23 +33,27 @@ class Card extends Component {
 
 class Counter extends Component {
   state = {
-    count: 0
+    count: 1,
+    color: 'skyblue'
   }
+
+  randomizeColor = () => this.setState({ color: randomColor() })
 
   componentDidMount () {
     setInterval( () => {
-      this.setState({ count: this.state.count + 5 })
-    }, 5000)
+      this.setState({ count: this.state.count + 1 })
+    }, 1000)
   }
 
   render () {
-    const { count } = this.state
-    const { color, size } = this.props
+    const { count, color } = this.state
 
     return (
-      <div style={{ color, fontSize: size }}>
-        { count }
-      </div>
+    <Container>
+      <Lard color={color}>
+        <input type={'button'} value={'Randomize Color'} onClick={this.randomizeColor} />
+      </Lard>
+    </Container>
     )
   }
 }
@@ -60,9 +71,7 @@ class App extends Component {
       <div>
         <Card color={'skyblue'}>Card 1</Card>
         <Card color={'steelblue'}>Card 2</Card>
-        <Counter color={'lightblue'} size={16} />
-        <Counter color={'skyblue'} size={32} />
-        <Counter color={'steelblue'} size={80} />
+        <Counter/>
       </div>
     )
   }
