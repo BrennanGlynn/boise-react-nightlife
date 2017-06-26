@@ -24,11 +24,24 @@ class Card extends Component {
   }
 }
 
-class Sub extends Component {
+class Counter extends Component {
+  state = {
+    count: 0
+  }
+
+  componentDidMount () {
+    setInterval( () => {
+      this.setState({ count: this.state.count + 5 })
+    }, 5000)
+  }
+
   render () {
+    const { count } = this.state
+    const { color, size } = this.props
+
     return (
-      <div>
-        <img src={'//unsplash.it/200/300'} />
+      <div style={{ color, fontSize: size }}>
+        { count }
       </div>
     )
   }
@@ -36,13 +49,23 @@ class Sub extends Component {
 
 const root = document.querySelector('#app')
 
-const element = (
-  <div>
-    <Card color={'skyblue'}>Card 1</Card>
-    <Card color={'steelblue'}>Card 2</Card>
-  </div>
-)
+class App extends Component {
+  render () {
+    const style = {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+    return (
+      <div>
+        <Card color={'skyblue'}>Card 1</Card>
+        <Card color={'steelblue'}>Card 2</Card>
+        <Counter color={'lightblue'} size={16} />
+        <Counter color={'skyblue'} size={32} />
+        <Counter color={'steelblue'} size={80} />
+      </div>
+    )
+  }
+}
 
-const sub = document.querySelector('#sub')
-ReactDom.render(element, root)
-ReactDom.render(<Sub />, sub)
+ReactDom.render(<App />, root)
