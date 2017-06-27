@@ -13,6 +13,9 @@ const Lard = styled.div`
 
 const Container = styled.div`
   padding: 20px;
+  margin: 20px;
+  color: white;
+  background-color: #0693e3;
 `
 
 class Card extends Component {
@@ -39,20 +42,13 @@ class Counter extends Component {
 
   randomizeColor = () => this.setState({ color: randomColor() })
 
-  componentDidMount () {
-    setInterval( () => {
-      this.setState({ count: this.state.count + 1 })
-    }, 1000)
-  }
-
   render () {
     const { count, color } = this.state
 
     return (
     <Container>
-      <Lard color={color}>
-        <input type={'button'} value={'Randomize Color'} onClick={this.randomizeColor} />
-      </Lard>
+      <div onClick={() => this.setState({ count: count + 1 })}>Click here to increment {count}
+      </div>
     </Container>
     )
   }
