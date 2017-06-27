@@ -42,12 +42,17 @@ class Counter extends Component {
 
   randomizeColor = () => this.setState({ color: randomColor() })
 
+  handleClick = () => {
+    const { count } = this.state
+    this.setState({ count: count + 1})
+  }
+
   render () {
     const { count, color } = this.state
 
     return (
     <Container>
-      <div onClick={() => this.setState({ count: count + 1 })}>Click here to increment {count}
+      <div onClick={this.handleClick}>Click here to increment {count}
       </div>
     </Container>
     )
