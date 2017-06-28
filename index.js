@@ -36,7 +36,7 @@ class Card extends Component {
 
 class Counter extends Component {
   state = {
-    count: 1,
+    count: 2,
     color: 'skyblue'
   }
 
